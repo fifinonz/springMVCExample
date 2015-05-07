@@ -5,7 +5,7 @@ package com.springapp.model;
  */
 
 @Entity
-@Table(name="drugs")
+@Table(name="prescription")
 public class Drugs {
     @Id
     @GeneratedValue
@@ -16,7 +16,7 @@ public class Drugs {
 
     private int PId;
 
-    private String phone;
+    /* getters and setters */
 
     public int getDId() {
         return DId;

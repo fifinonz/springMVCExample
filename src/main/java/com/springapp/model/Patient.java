@@ -10,7 +10,7 @@ import java.util.Date;
 
 
     @Entity
-    @Table(name="employee")
+    @Table(name="patient")
     public class Patient {
         @Id
         @GeneratedValue
@@ -24,6 +24,8 @@ import java.util.Date;
         private Date dob;
 
         private Timestamp timeEntry;
+
+    /* getters and setters */
 
         public int getPId() {
             return PId;
