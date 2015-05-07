@@ -2,20 +2,28 @@ package com.springapp.dao.impl;
 
 import com.springapp.dao.DrugsDao;
 import com.springapp.model.Drugs;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by dhis on 07/05/15.
+ * Created by Muthoni on 07/05/15.
  */
 public class DrugsDaoImpl implements DrugsDao {
+
     @Autowired
     SessionFactory sessionFactory;
     private int dId;
 
     @Transactional
-    @OverrdIde
+    @Override
     public int insertRow(Drugs drug) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -26,7 +34,7 @@ public class DrugsDaoImpl implements DrugsDao {
         return (Integer) dId;
     }
 
-    @OverrdIde
+    @Override
     public Drugs getDrugsById(int dId) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(Drugs.class);
@@ -36,7 +44,7 @@ public class DrugsDaoImpl implements DrugsDao {
         return drug;
     }
 
-    @OverrdIde
+    @Override
     public List<Drugs> getList() {
         Session session = sessionFactory.openSession();
         @SuppressWarnings("unchecked")
@@ -45,12 +53,12 @@ public class DrugsDaoImpl implements DrugsDao {
         return drugList;
     }
 
-    @OverrdIde
+    @Override
     public int updateRow(Drugs drug) {
         return 0;
     }
 
-    @OverrdIde
+    @Override
     public int deleteRow(int dId) {
         return 0;
     }

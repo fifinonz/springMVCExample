@@ -1,15 +1,21 @@
 package com.springapp.model;
 
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Created by dhis on 07/05/15.
+ * Created by Muthoni on 07/05/15.
  */
 
 
 
-    @Entity
+
     @Table(name="patient")
     public class Patient {
         @Id
