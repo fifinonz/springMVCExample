@@ -24,7 +24,7 @@ public class Drugs
     private int pId;
 
     /* Entity Mapping*/
-    @ManyToMany
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pId", insertable = false, updatable = false)
     private Patient patient;
 

@@ -47,6 +47,7 @@ public class PatientDaoImpl  implements PatientDao
     @Override
     public List<Patient> getList() {
         Session session = sessionFactory.openSession();
+
         @SuppressWarnings("unchecked")
         List<Patient> patientList = session.createQuery("from patient").list();
         session.close();

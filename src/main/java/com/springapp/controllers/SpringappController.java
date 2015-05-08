@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
+
 import java.util.List;
 
 /**
@@ -28,38 +29,22 @@ public class SpringappController {
     @Autowired
     DrugsManager drugsManager;
 
-    @RequestMapping("/index")
-    public String patient_details(Model model){
+    @RequestMapping("/")
+    public ModelAndView index(){
 
-        model.addAttribute("message","Patient Details");
-        return "details";
-    }
-
-  /*  @RequestMapping("/drugs")
-    public String prescribed(Model model){
-
-        model.addAttribute("message", "Drug Prescriptions");
-        return "drugList";
-
-    }
-
-
-   /* @RequestMapping("/drugs")
-    public ModelAndView patient_drugs()
-    {
         ModelAndView model = new ModelAndView();
-        List<Patient> patientList = patientManager.getList();
-        model.addObject("patientList", patientList);
+        model.addObject("msg","Please Add New Patient Below");
+        model.addObject("patientlist", patientManager.getList());
+        model.setViewName("details");
 
-        model.setViewName("drugList");
         return model;
     }
-    */
+
 
     @RequestMapping("/create")
     public ModelAndView create(@RequestParam(value = "first_name", required = false) String first_name,
                                @RequestParam(value = "last_name", required = false) String last_name,
-                               @RequestParam(value = "dob", required = false) java.sql.Date dob
+                               @RequestParam(value = "dob", required = false) Date dob
                                ) {
         ModelAndView model = new ModelAndView();
 
@@ -68,9 +53,17 @@ public class SpringappController {
         patient.setLast_name(last_name);
         patient.setDate(dob);
         patientManager.insertRow(patient);
+        model.addObject("patientlist", patientManager.getList());
 
 
         model.setViewName("details");
+        return model;
+    }
+
+    @RequestMapping(value= "/allocate", method = RequestMethod.GET)
+    public ModelAndView displayPatient(@RequestParam(value = "pId", required = false) Integer pId) {
+        ModelAndView model = new ModelAndView("drugList");
+        model.addObject("patient", patientManager.getPatientById(pId));
         return model;
     }
 
@@ -85,6 +78,8 @@ public class SpringappController {
         drug.setpId(pId);
         drugsManager.insertRow(drug);
 
+        model.addObject("druglist", drugsManager.getList());
+        model.addObject("msg","Patient Allocated drug Successfully");
         model.setViewName("drugList");
         return model;
     }

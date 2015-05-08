@@ -2,7 +2,7 @@ package com.springapp.model;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
+
 import java.util.List;
 
 
@@ -32,7 +32,7 @@ import java.util.List;
 
 /*Entity Mapping*/
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy ="patient")
     private List<Drugs> drugs;
 
     /* getters and setters */

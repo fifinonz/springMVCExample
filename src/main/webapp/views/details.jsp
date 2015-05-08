@@ -12,9 +12,7 @@
   <title>Enter A New Patient</title>
 </head>
 <body>
-<c:if test="${not empty error}">
-  <div class="error">${error}</div>
-</c:if>
+
 <c:if test="${not empty msg}">
   <div class="msg">${msg}</div>
 </c:if>
@@ -28,6 +26,27 @@
   <button> Create</button>
 
 </form>
+
+<br/>
+<p>List of Patients</p>
+<c:if test="${!empty patientlist}">
+  <table class="tg">
+  <tr>
+  <th width="80">Patient ID</th>
+  <th width="150">Patient Name</th>
+  <th width="150">Date of Birth</th>
+  <th width="150">Allocate Drug</th>
+  </tr>
+  <c:forEach items="${patientlist}" var="patient">
+    <tr>
+      <td>${patient.pId}</td>
+      <td>${patient.first_name} ${patient.last_name}</td>
+      <td>${patient.date}</td>
+      <td><a href="<c:url value='/allocate?id=${patient.pId}' />" >Allocate Drug</a></td>
+    </tr>
+  </c:forEach>
+  </table>
+
 
 </body>
 </html>

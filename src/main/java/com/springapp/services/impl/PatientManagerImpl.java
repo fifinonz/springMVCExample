@@ -27,9 +27,7 @@ public class PatientManagerImpl implements PatientManager
     }
 
     @Override
-    public List<Patient> getList() {
-        return patientDao.getList();
-    }
+    public List<Patient> getList() {return patientDao.getList();}
 
     @Override
     public int updateRow(Patient patient) {
