@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name="prescription")
+@Table(name="drugs")
 public class Drugs {
     @Id
     @GeneratedValue
