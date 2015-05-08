@@ -30,7 +30,7 @@ public class springapp {
     public String hello(Model model){
 
         model.addAttribute("message","HELLO WORLD");
-        return "hello";
+        return "drugList";
     }
 
     @RequestMapping("/index")
@@ -38,7 +38,7 @@ public class springapp {
 
         ModelAndView model = new ModelAndView();
         model.addObject("msg","WELCOME TO SPRING MVC");
-        model.setViewName("hello");
+        model.setViewName("drugList");
 
         return model;
     }
@@ -46,7 +46,7 @@ public class springapp {
     @RequestMapping("/create")
     public ModelAndView create(@RequestParam(value = "first_name", required = false) String first_name,
                                @RequestParam(value = "last_name", required = false) String last_name,
-                               @RequestParam(value = "dob", required = false) Date dob,
+                               @RequestParam(value = "dob", required = false) java.sql.Date dob,
                                @RequestParam(value = "timeEntry", required = false) Timestamp timeEntry,
                                @RequestParam(value = "drug_name", required = false) String drug_name,
                                @RequestParam(value = "pId", required = false) Integer pId
@@ -67,7 +67,7 @@ public class springapp {
 
 
 
-    model.setViewName("hello");
+    model.setViewName("drugList");
     return model;
 }
 
@@ -80,7 +80,7 @@ public class springapp {
         for (int i = 0; i < patientList.size(); i++) {
             Patient patient = patientList.get(i);
 
-            if(drugsList.contains(patient.getpId())) {
+            if(drugsList.contains(drugsManager.getPatientById(i))) {
                 System.out.println(patient.getFirst_name() + " " + patient.getLast_name() + " " + drugsManager.getDrugById(i));
                 System.out.println("\n\n**********************************\n\n");
             }

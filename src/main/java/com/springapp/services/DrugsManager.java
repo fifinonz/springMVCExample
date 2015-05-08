@@ -10,7 +10,9 @@ import java.util.List;
 public interface DrugsManager {
     public int insertRow(Drugs drug);
 
-    public Drugs getDrugById(int dId);
+    public abstract Drugs getDrugById(int dId);
+
+    public Drugs getPatientById(int pId);
 
     Drugs getDrugsById(int dId);
 

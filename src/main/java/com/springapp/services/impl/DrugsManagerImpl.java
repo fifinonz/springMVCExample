@@ -26,6 +26,9 @@ public abstract class DrugsManagerImpl implements DrugsManager{
     }
 
     @Override
+    public Drugs getPatientById(int pId){return drugDao.getPatientById(pId);}
+
+    @Override
     public List<Drugs> getList() {
         return drugDao.getList();
     }

@@ -13,6 +13,8 @@ public interface DrugsDao {
 
     public Drugs getDrugsById(int dId);
 
+    public Drugs getPatientById(int pId);
+
     public List<Drugs> getList();
 
     public int updateRow(Drugs drug);

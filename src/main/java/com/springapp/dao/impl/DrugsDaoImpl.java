@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Muthoni on 07/05/15.
  */
-public class DrugsDaoImpl implements DrugsDao {
+public  abstract class DrugsDaoImpl implements DrugsDao {
 
     @Autowired
     SessionFactory sessionFactory;
