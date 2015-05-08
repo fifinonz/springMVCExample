@@ -61,8 +61,8 @@ public class SpringappController {
         return model;
     }
 
-    @RequestMapping("/prescribed")
-    public ModelAndView prescribed( @RequestParam(value = "pId", required = false) Integer pId,
+    @RequestMapping("/drug")
+    public ModelAndView drug( @RequestParam(value = "pId", required = false) Integer pId,
                                     @RequestParam(value = "drug_name", required = false) String drug_name
     ) {
         ModelAndView model = new ModelAndView();

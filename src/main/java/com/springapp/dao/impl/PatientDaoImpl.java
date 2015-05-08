@@ -16,7 +16,8 @@ import java.util.List;
 /**
  * Created by Muthoni on 07/05/15.
  */
-public class PatientDaoImpl  implements PatientDao {
+public class PatientDaoImpl  implements PatientDao
+{
     @Autowired
     SessionFactory sessionFactory;
 

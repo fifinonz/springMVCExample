@@ -19,9 +19,9 @@
   <div class="msg">${msg}</div>
 </c:if>
 
-<form action="<c:url value='/create' />" method='POST'>
+<form action="<c:url value='/drug' />" method='POST'>
 
-  <input type="text" placeholder="Patient ID" name="pId" >
+  <input type="" placeholder="Patient ID" name="pId" >
   <input type="text" placeholder="Drug name" name="drug_name" >
 
 

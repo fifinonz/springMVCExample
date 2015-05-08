@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * Created by Muthoni on 07/05/15.
  */
-public class PatientManagerImpl implements PatientManager {
+public class PatientManagerImpl implements PatientManager
+{
 
     @Autowired
     PatientDao patientDao;

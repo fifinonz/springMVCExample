@@ -31,8 +31,8 @@
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.springapp.models.Patient</value>
-                <value>com.springapp.models.Drugs</value>
+                <value>com.springapp.model.Patient</value>
+                <value>com.springapp.model.Drugs</value>
             </list>
 
         </property>

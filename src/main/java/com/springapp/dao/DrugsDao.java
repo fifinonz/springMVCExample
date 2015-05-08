@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * Created by Muthoni on 07/05/15.
  */
-public interface DrugsDao {
+public interface DrugsDao
+{
 
     public int insertRow(Drugs drug);
 

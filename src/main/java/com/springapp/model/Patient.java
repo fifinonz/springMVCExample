@@ -13,7 +13,8 @@ import java.sql.Timestamp;
 
     @Entity
     @Table(name="patient")
-    public class Patient {
+    public class Patient
+{
         @Id
         @GeneratedValue
         private int pId;
@@ -25,7 +26,7 @@ import java.sql.Timestamp;
 
         private Date dob;
 
-        private Timestamp timeEntry;
+
 
     /* getters and setters */
 
@@ -40,6 +41,7 @@ import java.sql.Timestamp;
         public String getFirst_name() {
             return first_name;
         }
+
         public void setFirst_name(String first_name) {
             this.first_name = first_name;
         }
@@ -60,13 +62,8 @@ import java.sql.Timestamp;
             this.dob = dob;
         }
 
-        public Timestamp getTimeEntry() {
-            return timeEntry;
-        }
 
-        public void setTimeEntry(Timestamp timeEntry) {
-            this.timeEntry = timeEntry;
-        }
+
 
 
 }
