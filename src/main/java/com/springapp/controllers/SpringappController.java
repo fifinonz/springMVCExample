@@ -35,13 +35,26 @@ public class SpringappController {
         return "details";
     }
 
-    @RequestMapping("/drugs")
+  /*  @RequestMapping("/drugs")
     public String prescribed(Model model){
 
         model.addAttribute("message", "Drug Prescriptions");
         return "drugList";
 
     }
+
+
+   /* @RequestMapping("/drugs")
+    public ModelAndView patient_drugs()
+    {
+        ModelAndView model = new ModelAndView();
+        List<Patient> patientList = patientManager.getList();
+        model.addObject("patientList", patientList);
+
+        model.setViewName("drugList");
+        return model;
+    }
+    */
 
     @RequestMapping("/create")
     public ModelAndView create(@RequestParam(value = "first_name", required = false) String first_name,
@@ -61,8 +74,8 @@ public class SpringappController {
         return model;
     }
 
-    @RequestMapping("/drug")
-    public ModelAndView drug( @RequestParam(value = "pId", required = false) Integer pId,
+    @RequestMapping("/prescribe")
+    public ModelAndView prescribe( @RequestParam(value = "pId", required = false) Integer pId,
                                     @RequestParam(value = "drug_name", required = false) String drug_name
     ) {
         ModelAndView model = new ModelAndView();

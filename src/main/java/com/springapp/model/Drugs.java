@@ -14,12 +14,19 @@ public class Drugs
 {
     @Id
     @GeneratedValue
+    @Column(name = "dId")
     private int dId;
 
     @Column(name = "drug_name")
     private String drug_name;
 
+    @Column(name = "pId")
     private int pId;
+
+    /* Entity Mapping*/
+    @ManyToMany
+    @JoinColumn(name = "pId", insertable = false, updatable = false)
+    private Patient patient;
 
     /* getters and setters */
 

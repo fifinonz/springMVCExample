@@ -3,6 +3,7 @@ package com.springapp.model;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -17,16 +18,22 @@ import java.sql.Timestamp;
 {
         @Id
         @GeneratedValue
+        @Column(name = "pId")
         private int pId;
 
         @Column(name = "first_name")
         private String first_name;
 
+        @Column(name = "last_name")
         private String last_name;
 
+        @Column(name = "dob")
         private Date dob;
 
+/*Entity Mapping*/
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Drugs> drugs;
 
     /* getters and setters */
 
@@ -62,7 +69,12 @@ import java.sql.Timestamp;
             this.dob = dob;
         }
 
-
+    public List<Drugs> getDrug() {
+        return drugs;
+    }
+    public void setDrug(List<Drugs> drugs) {
+        this.drugs = drugs;
+    }
 
 
 
