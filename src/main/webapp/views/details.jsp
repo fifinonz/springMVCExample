@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+  <title>Enter A New Patient</title>
 </head>
 <body>
 <c:if test="${not empty error}">
@@ -21,11 +21,11 @@
 
 <form action="<c:url value='/create' />" method='POST'>
 
-  <input type="text" placeholder="Patient ID" name="pId" >
-  <input type="text" placeholder="Drug name" name="drug_name" >
+  <input type="text" placeholder="first name" name="first_name" >
+  <input type="text" placeholder="last name" name="last_name" >
+  <input type="date" placeholder="D.o.B" name="dob" >
 
-
-  <button>Submit</button>
+  <button> Create</button>
 
 </form>
 

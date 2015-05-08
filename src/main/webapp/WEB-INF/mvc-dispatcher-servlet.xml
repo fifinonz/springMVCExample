@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.springapp"/>
+    <context:component-scan base-package="com.springapp.controllers"/>
 
     <mvc:annotation-driven/>
 
@@ -19,7 +19,7 @@
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/test" />
+        <property name="url" value="jdbc:mysql://localhost:3306/clinic" />
         <property name="username" value="root" />
         <property name="password" value="M@jESty92" />
     </bean>
@@ -32,7 +32,9 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.springapp.models.Patient</value>
+                <value>com.springapp.models.Drugs</value>
             </list>
+
         </property>
         <property name="hibernateProperties">
             <props>
@@ -51,9 +53,9 @@
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
     <bean id="patientDaoImpl" class="com.springapp.dao.impl.PatientDaoImpl" />
-    <bean id="patientManagerImpl" class="com.springapp.services.PatientManager" abstract="true"/>
-    <bean id="DrugsDaoImpl" class="com.springapp.dao.impl.DrugsDaoImpl" abstract="true"/>
-    <bean id="drugManagerImpl" class="com.springapp.services.DrugsManager" abstract="true"/>
+    <bean id="patientManagerImpl" class="com.springapp.services.impl.PatientManagerImpl"/>
+    <bean id="drugsDaoImpl" class="com.springapp.dao.impl.DrugsDaoImpl"/>
+    <bean id="drugManagerImpl" class="com.springapp.services.impl.DrugsManagerImpl"/>
 
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/views/"/>

@@ -11,9 +11,9 @@ public interface DrugsDao {
 
     public int insertRow(Drugs drug);
 
-    public Drugs getDrugsById(int dId);
+    public Drugs getDrugById(int dId);
 
-    public Drugs getPatientById(int pId);
+  /*  public Drugs getPatientById(int pId); */
 
     public List<Drugs> getList();
 

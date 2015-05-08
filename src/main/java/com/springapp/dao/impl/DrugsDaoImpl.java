@@ -35,7 +35,7 @@ public  abstract class DrugsDaoImpl implements DrugsDao {
     }
 
     @Override
-    public Drugs getDrugsById(int dId) {
+    public Drugs getDrugById(int dId) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(Drugs.class);
         criteria.add(Restrictions.eq("dId", dId));

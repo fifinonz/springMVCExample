@@ -20,61 +20,76 @@ import java.util.List;
  */
 
 @Controller
-public class springapp {
+public class SpringappController {
 
     @Autowired
     PatientManager patientManager;
+
+    @Autowired
     DrugsManager drugsManager;
 
-    @RequestMapping("/welcome")
-    public String hello(Model model){
+    @RequestMapping("/index")
+    public String patient_details(Model model){
 
-        model.addAttribute("message","HELLO WORLD");
-        return "drugList";
+        model.addAttribute("message","Patient Details");
+        return "details";
     }
 
-    @RequestMapping("/index")
-    public ModelAndView hello1(){
+    @RequestMapping("/drugs")
+    public String prescribed(Model model){
 
-        ModelAndView model = new ModelAndView();
-        model.addObject("msg","WELCOME TO SPRING MVC");
-        model.setViewName("drugList");
+        model.addAttribute("message", "Drug Prescriptions");
+        return "drugList";
 
-        return model;
     }
 
     @RequestMapping("/create")
     public ModelAndView create(@RequestParam(value = "first_name", required = false) String first_name,
                                @RequestParam(value = "last_name", required = false) String last_name,
-                               @RequestParam(value = "dob", required = false) java.sql.Date dob,
-                               @RequestParam(value = "timeEntry", required = false) Timestamp timeEntry,
-                               @RequestParam(value = "drug_name", required = false) String drug_name,
-                               @RequestParam(value = "pId", required = false) Integer pId
-    ){
+                               @RequestParam(value = "dob", required = false) java.sql.Date dob
+                               ) {
         ModelAndView model = new ModelAndView();
 
         Patient patient = new Patient();
         patient.setFirst_name(first_name);
         patient.setLast_name(last_name);
         patient.setDate(dob);
-        patient.setTimeEntry(timeEntry);
         patientManager.insertRow(patient);
+
+
+        model.setViewName("details");
+        return model;
+    }
+
+    @RequestMapping("/prescribed")
+    public ModelAndView prescribed( @RequestParam(value = "pId", required = false) Integer pId,
+                                    @RequestParam(value = "drug_name", required = false) String drug_name
+    ) {
+        ModelAndView model = new ModelAndView();
 
         Drugs drug = new Drugs();
         drug.setDrug_name(drug_name);
         drug.setpId(pId);
         drugsManager.insertRow(drug);
 
+        model.setViewName("drugList");
+        return model;
+    }
 
-
-    model.setViewName("drugList");
-    return model;
-}
 
     @RequestMapping("/list")
-    public void list(){
+    public ModelAndView list()
 
-        List<Patient> patientList =  patientManager.getList();
+    {
+        ModelAndView model = new ModelAndView();
+        List<Drugs> drugsList = drugsManager.getList();
+        model.addObject("drugsList", drugsList);
+
+        model.setViewName("display");
+        return model;
+
+
+      /*  List<Patient> patientList =  patientManager.getList();
         List<Drugs> drugsList =  drugsManager.getList();
 
         for (int i = 0; i < patientList.size(); i++) {
@@ -84,7 +99,7 @@ public class springapp {
                 System.out.println(patient.getFirst_name() + " " + patient.getLast_name() + " " + drugsManager.getDrugById(i));
                 System.out.println("\n\n**********************************\n\n");
             }
-        }
+        }*/
 
 
     }

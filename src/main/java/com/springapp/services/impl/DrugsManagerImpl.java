@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Muthoni on 07/05/15.
  */
-public abstract class DrugsManagerImpl implements DrugsManager{
+public  class DrugsManagerImpl implements DrugsManager{
 
     @Autowired
     DrugsDao drugDao;
@@ -21,13 +21,19 @@ public abstract class DrugsManagerImpl implements DrugsManager{
     }
 
     @Override
-    public Drugs getDrugsById(int dId) {
-        return drugDao.getDrugsById(dId);
+    public Drugs getDrugById(int dId) {
+        return drugDao.getDrugById(dId);
     }
 
     @Override
-    public Drugs getPatientById(int pId){return drugDao.getPatientById(pId);}
+    public Drugs getDrugsById(int dId) {
+        return null;
+    }
 
+    /*
+        @Override
+        public Drugs getPatientById(int pId){return drugDao.getPatientById(pId);}
+    */
     @Override
     public List<Drugs> getList() {
         return drugDao.getList();
