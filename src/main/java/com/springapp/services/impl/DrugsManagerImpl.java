@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Muthoni on 07/05/15.
  */
-public class DrugsManagerImpl implements DrugsManager{
+public abstract class DrugsManagerImpl implements DrugsManager{
 
     @Autowired
     DrugsDao drugDao;

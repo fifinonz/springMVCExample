@@ -1,52 +1,48 @@
 package com.springapp.model;
 
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 
 /**
  * Created by Muthoni on 07/05/15.
  */
 
-
+@Entity
 @Table(name="prescription")
 public class Drugs {
     @Id
     @GeneratedValue
-    private int DId;
+    private int dId;
 
     @Column(name = "drug_name")
-    private String dname;
+    private String drug_name;
 
-    private int PId;
+    private int pId;
 
     /* getters and setters */
 
     public int getDId() {
-        return DId;
+        return dId;
     }
 
-    public void setDId(int DId) {
-        this.DId = DId;
+    public void setDId(int dId) {this.dId = dId;}
 
 
-    public String getDname() {
-        return dname;
+    public String getDrug_name() {
+        return drug_name;
     }
 
-    public void setDname(String dname) {
-        this.dname = dname;
+    public void setDrug_name(String drug_name) {
+        this.drug_name = drug_name;
     }
 
-    public int getPId() {
-        return PId;
+    public int getpId() {
+        return pId;
     }
 
-    public void setPId(int PId) {
-        this.PId = PId;
+    public void setpId(int pId) {
+        this.pId = pId;
     }
 }
-}
+

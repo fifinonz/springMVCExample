@@ -22,7 +22,7 @@ public class PatientManagerImpl implements PatientManager {
 
     @Override
     public Patient getPatientById(int pId) {
-        return patientDao.getPatientById(pId);
+        return patientDao.getPatientBypId(pId);
     }
 
     @Override

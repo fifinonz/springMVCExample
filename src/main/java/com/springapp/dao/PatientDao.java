@@ -5,7 +5,7 @@ import com.springapp.model.Patient;
 import java.util.List;
 
 /**
- * Created by dhis on 07/05/15.
+ * Created by Muthoni on 07/05/15.
  */
 public interface PatientDao {
 

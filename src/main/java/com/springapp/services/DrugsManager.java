@@ -12,6 +12,8 @@ public interface DrugsManager {
 
     public Drugs getDrugById(int dId);
 
+    Drugs getDrugsById(int dId);
+
     public List<Drugs> getList();
 
     public int updateRow(Drugs drug);

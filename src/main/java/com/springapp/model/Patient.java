@@ -1,13 +1,9 @@
 package com.springapp.model;
 
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 /**
  * Created by Muthoni on 07/05/15.
@@ -15,12 +11,12 @@ import java.util.Date;
 
 
 
-
+    @Entity
     @Table(name="patient")
     public class Patient {
         @Id
         @GeneratedValue
-        private int PId;
+        private int pId;
 
         @Column(name = "first_name")
         private String first_name;
@@ -33,18 +29,17 @@ import java.util.Date;
 
     /* getters and setters */
 
-        public int getPId() {
-            return PId;
+        public int getpId() {
+            return pId;
         }
 
-        public void setPId(int PId) {
-            this.PId = PId;
+        public void setpId(int pId) {
+            this.pId = pId;
         }
 
         public String getFirst_name() {
             return first_name;
         }
-
         public void setFirst_name(String first_name) {
             this.first_name = first_name;
         }

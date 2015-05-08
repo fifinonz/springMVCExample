@@ -2,12 +2,19 @@ package com.springapp.dao.impl;
 
 import com.springapp.dao.PatientDao;
 import com.springapp.model.Patient;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by dhis on 07/05/15.
+ * Created by Muthoni on 07/05/15.
  */
 public class PatientDaoImpl  implements PatientDao {
     @Autowired
