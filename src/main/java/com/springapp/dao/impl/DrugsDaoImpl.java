@@ -7,8 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,10 +20,10 @@ import java.util.List;
 @Repository
 public class DrugsDaoImpl implements DrugsDao
 {
-
+    @Autowired
     private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory()
+   /* public SessionFactory getSessionFactory()
     {
         return sessionFactory;
     }
@@ -29,19 +31,22 @@ public class DrugsDaoImpl implements DrugsDao
     public void setSessionFactory (SessionFactory sessionFactory)
     {
         this.sessionFactory=sessionFactory;
+        sessionFactory.openSession();
     }
 
-
+*/
     @Override
-    public void addDrug(Drugs drug) {
-        Session session = this.getSessionFactory().getCurrentSession();
+    public int addDrug(Drugs drug) {
+        Session session = this.sessionFactory.openSession();
         session.persist(drug);
+        Serializable id = session.getIdentifier(drug);
+        return (Integer) id;
 
     }
 
     @Override
     public Drugs getDrugBydId(int dId) {
-        Session session = getSessionFactory().getCurrentSession();
+        Session session = this.sessionFactory.openSession();
         Criteria criteria = session.createCriteria(Drugs.class);
         criteria.add(Restrictions.eq("dId", dId));
         Drugs drug;

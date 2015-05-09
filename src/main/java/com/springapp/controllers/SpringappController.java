@@ -26,14 +26,14 @@ public class SpringappController {
 
     private PatientManager patientManager;
 
-    @Autowired(required = true)
+    @Autowired
     public void setPatientManager(PatientManager pm) {
         this.patientManager = pm;
     }
 
     DrugsManager drugsManager;
 
-    @Autowired(required = true)
+    @Autowired
     public void setDrugsManager(DrugsManager dm) {
         this.drugsManager = dm;
     }
@@ -46,9 +46,30 @@ public class SpringappController {
         return "patient";
     }
 
+    @RequestMapping("/add")
+    public ModelAndView add( @RequestParam(value = "pId", required = false) Integer pId,
+                                   @RequestParam(value = "first_name", required = false) String first_name,
+                                   @RequestParam(value = "last_name", required = false) String last_name,
+                                   @RequestParam(value = "dob_name", required = false) Date dob
+    ) {
 
-    @RequestMapping(value = "/patient/add", method = RequestMethod.POST)
-    public String addPatient(@ModelAttribute("patient") Patient patient) {
+        ModelAndView model = new ModelAndView();
+
+        Patient patient = new Patient();
+        patient.setFirst_name(first_name);
+        patient.setLast_name(last_name);
+        patient.setDate(dob);
+        patient.setpId(pId);
+        patientManager.addPatient(patient);
+
+
+        model.addObject("drugList", patientManager.getList());
+        model.addObject("msg", "Patient Allocated drug Successfully");
+        model.setViewName("patient");
+        return model;
+    }
+
+  /*  public String addPatient(@ModelAttribute("patient") Patient patient) {
 
         if (patient.getpId() == 0) {
             //new patient
@@ -59,7 +80,7 @@ public class SpringappController {
         }
         return "redirect:/patient";
 
-    }
+    }*/
 
     @RequestMapping("/remove/{pId}")
     public String removePatient(@PathVariable("pId") int id) {
@@ -69,6 +90,7 @@ public class SpringappController {
 
     @RequestMapping("/edit/{pId}")
     public String editPerson(@PathVariable("pId") int id, Model model) {
+
         model.addAttribute("patient", this.patientManager.getPatientById(id));
         model.addAttribute("listPersons", this.patientManager.getList());
         return "patient";
@@ -85,7 +107,8 @@ public class SpringappController {
     Drugs drug = new Drugs();
     drug.setDrug_name(drug_name);
     drug.setpId(pId);
-    drugsManager.insertRow(drug);
+    drugsManager.addDrug(drug);
+
 
     model.addObject("drugList", drugsManager.getList());
     model.addObject("msg","Patient Allocated drug Successfully");

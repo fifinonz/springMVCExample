@@ -23,8 +23,9 @@ public  class DrugsManagerImpl implements DrugsManager
 
     @Override
     @Transactional
-    public void addDrug(Drugs drug) {
+    public int addDrug(Drugs drug) {
         this.drugDao.addDrug(drug);
+        return drug.getDId();
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
 public interface DrugsDao
 {
 
-    public void addDrug(Drugs drug);
+    public int addDrug(Drugs drug);
 
     public Drugs getDrugBydId(int dId);
 

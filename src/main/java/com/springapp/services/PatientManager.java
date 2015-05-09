@@ -10,7 +10,7 @@ import java.util.List;
 public interface PatientManager
 {
 
-    public void addPatient(Patient patient);
+    public int addPatient(Patient patient);
 
     public Patient getPatientById(int pId);
 

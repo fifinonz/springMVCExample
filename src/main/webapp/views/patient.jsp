@@ -25,7 +25,7 @@
   Add a Patient
 </h1>
 
-<c:url var="addAction" value="/patient/add" ></c:url>
+<c:url var="addAction" value="/add" ></c:url>
 
 <form:form action="${addAction}" commandName="patient">
   <table>
@@ -78,6 +78,7 @@
           <input type="submit"
                  value="<spring:message text="Edit Patient Details"/>" />
         </c:if>
+        <%--@elvariable id="patient" type="com.springapp.model.Patient"--%>
         <c:if test="${empty patient.first_name}">
           <input type="submit"
                  value="<spring:message text="Add New Patient"/>" />
@@ -87,6 +88,7 @@
   </table>
 </form:form>
 <br>
+
 <h3>Patients List</h3>
 <c:if test="${!empty listPatients}">
   <table class="tg">

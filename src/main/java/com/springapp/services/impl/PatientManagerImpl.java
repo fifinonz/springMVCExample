@@ -7,6 +7,7 @@ import com.springapp.model.Patient;
 import java.util.List;
 
 import com.springapp.services.PatientManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,18 +19,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class PatientManagerImpl implements PatientManager
 {
 
+    @Autowired
     private PatientDao patientDao;
 
-    public void setPatientDao(PatientDao patientDao)
+    public void setPatientDao(PatientDao dao)
     {
-        this.patientDao=patientDao;
+        this.patientDao=dao;
     }
+
 
     @Override
     @Transactional
-    public void addPatient(Patient patient) {
+    public int addPatient(Patient patient)
+    {
         this.patientDao.addPatient(patient);
+        return patient.getpId();
     }
+
 
     @Override
     @Transactional

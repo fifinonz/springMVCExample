@@ -10,7 +10,7 @@ import java.util.List;
 public interface DrugsManager
 {
 
-    public void addDrug(Drugs drug);
+    public int addDrug(Drugs drug);
 
     public Drugs getDrugById(int dId);
 

@@ -11,7 +11,7 @@ public interface PatientDao
 
 {
 
-    public void addPatient(Patient patient);
+    public int addPatient(Patient patient);
 
     public Patient getPatientBypId(int pId);
 
