@@ -11,13 +11,13 @@ public interface PatientDao
 
 {
 
-    public int insertRow(Patient patient);
+    public void addPatient(Patient patient);
 
     public Patient getPatientBypId(int pId);
 
     public List<Patient> getList();
 
-    public int updateRow(Patient patient);
+    public void updateRow(Patient patient);
 
-    public int deleteRow(int pId);
+    public void deleteRow(int pId);
 }

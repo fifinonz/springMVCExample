@@ -17,10 +17,10 @@ public class Drugs
     @Column(name = "dId")
     private int dId;
 
-    @Column(name = "drug_name")
+
     private String drug_name;
 
-    @Column(name = "pId")
+
     private int pId;
 
     /* Entity Mapping*/

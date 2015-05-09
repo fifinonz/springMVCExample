@@ -5,64 +5,77 @@ import com.springapp.model.Drugs;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.Serializable;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
  * Created by Muthoni on 07/05/15.
  */
+
+@Repository
 public class DrugsDaoImpl implements DrugsDao
 {
 
-    @Autowired
-    SessionFactory sessionFactory;
-    private int dId;
+    private SessionFactory sessionFactory;
 
-    @Transactional
+    public SessionFactory getSessionFactory()
+    {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory (SessionFactory sessionFactory)
+    {
+        this.sessionFactory=sessionFactory;
+    }
+
+
     @Override
-    public int insertRow(Drugs drug) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.save(drug);
-        tx.commit();
-        Serializable dId = session.getIdentifier(drug);
-        session.close();
-        return (Integer) dId;
+    public void addDrug(Drugs drug) {
+        Session session = this.getSessionFactory().getCurrentSession();
+        session.persist(drug);
+
     }
 
     @Override
-    public Drugs getDrugById(int dId) {
-        Session session = sessionFactory.openSession();
+    public Drugs getDrugBydId(int dId) {
+        Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Drugs.class);
         criteria.add(Restrictions.eq("dId", dId));
-        Drugs drug = (Drugs) criteria.uniqueResult();
-        session.close();
+        Drugs drug;
+        drug = (Drugs)criteria.uniqueResult();
+
         return drug;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Drugs> getList() {
-        Session session = sessionFactory.openSession();
-        @SuppressWarnings("unchecked")
-        List<Drugs> drugList = session.createQuery("from drugs").list();
-        session.close();
-        return drugList;
+        Session session = sessionFactory.getCurrentSession();
+
+
+        List<Drugs> drugsList = session.createQuery("from drugs").list();
+
+        return drugsList;
     }
 
     @Override
-    public int updateRow(Drugs drug) {
-        return 0;
+    public void updateRow(Drugs drug) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(drug);
     }
 
     @Override
-    public int deleteRow(int dId) {
-        return 0;
+    public void deleteRow(int dId) {
+        Session session=this.sessionFactory.getCurrentSession();
+        Drugs drug = (Drugs) session.load(Drugs.class, new Integer(dId));
+        if(null!=drug){
+            session.delete(drug);
+        }
+
     }
+
+
 }
-
-

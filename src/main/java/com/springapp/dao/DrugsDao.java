@@ -10,15 +10,15 @@ import java.util.List;
 public interface DrugsDao
 {
 
-    public int insertRow(Drugs drug);
+    public void addDrug(Drugs drug);
 
-    public Drugs getDrugById(int dId);
+    public Drugs getDrugBydId(int dId);
 
   /*  public Drugs getPatientById(int pId); */
 
     public List<Drugs> getList();
 
-    public int updateRow(Drugs drug);
+    public void updateRow(Drugs drug);
 
-    public int deleteRow(int dId);
+    public void deleteRow(int dId);
 }

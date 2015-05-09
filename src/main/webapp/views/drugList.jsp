@@ -13,10 +13,6 @@
 </head>
 <body>
 
-<c:if test="${not empty msg}">
-  <div class="msg">${msg}</div>
-</c:if>
-
 <form action="<c:url value='/prescribe' />" method='POST'>
 
   <%-- <select name = "pId" required>
@@ -36,7 +32,8 @@
 </form>
 
 <br/>
-<c:if test="${!empty druglist}">
+<%--@elvariable id="drugList" type="java.util.List"--%>
+<c:if test="${!empty drugList}">
   <p>List of Drugs</p>
   <table class="tg">
     <tr>
@@ -45,12 +42,13 @@
       <th width="80">Patient ID</th>
       <th width="250">View Patients Taking this Drug</th>
     </tr>
-    <c:forEach items="${druglist}" var="drug">
+
+    <c:forEach items="${drugList}" var="drug">
       <tr>
         <td>${drug.DId}</td>
         <td>${drug.drug_name} </td>
         <td>${drug.pId}</td>
-        <td><a href="<c:url value='/list' />" >View Patients</a></td>
+        <td><a href="<c:url value='/patient' />" >View Patients</a></td>
       </tr>
     </c:forEach>
   </table>

@@ -5,64 +5,77 @@ import com.springapp.model.Patient;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Muthoni on 07/05/15.
  */
+
+@Repository
 public class PatientDaoImpl  implements PatientDao
 {
-    @Autowired
-    SessionFactory sessionFactory;
 
-    @Transactional
+    private SessionFactory sessionFactory;
+
+    public SessionFactory getSessionFactory()
+    {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory (SessionFactory sessionFactory)
+    {
+        this.sessionFactory=sessionFactory;
+    }
+
+
     @Override
-    public int insertRow(Patient patient) {
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.save(patient);
-        tx.commit();
-        Serializable pId = session.getIdentifier(patient);
-        session.close();
-        return (Integer) pId;
+    public void addPatient(Patient patient) {
+        Session session = this.getSessionFactory().getCurrentSession();
+        session.persist(patient);
+
     }
 
     @Override
     public Patient getPatientBypId(int pId) {
-        Session session = sessionFactory.openSession();
+        Session session = getSessionFactory().getCurrentSession();
         Criteria criteria = session.createCriteria(Patient.class);
         criteria.add(Restrictions.eq("pId", pId));
         Patient patient;
         patient = (Patient) criteria.uniqueResult();
-        session.close();
+
         return patient;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Patient> getList() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
 
-        @SuppressWarnings("unchecked")
+
         List<Patient> patientList = session.createQuery("from patient").list();
-        session.close();
+
         return patientList;
     }
 
     @Override
-    public int updateRow(Patient patient) {
-        return 0;
+    public void updateRow(Patient patient) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(patient);
     }
 
     @Override
-    public int deleteRow(int pId) {
-        return 0;
-    }
+    public void deleteRow(int pId) {
+        Session session=this.sessionFactory.getCurrentSession();
+        Patient patient = (Patient) session.load(Patient.class, new Integer(pId));
+        if(null!=patient){
+            session.delete(patient);
+        }
+
+           }
 
 
 }

@@ -3,7 +3,8 @@ package com.springapp.services.impl;
 import com.springapp.dao.DrugsDao;
 import com.springapp.model.Drugs;
 import com.springapp.services.DrugsManager;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,40 +14,43 @@ import java.util.List;
 public  class DrugsManagerImpl implements DrugsManager
 {
 
-    @Autowired
-    DrugsDao drugDao;
+    private DrugsDao drugDao;
 
-    @Override
-    public int insertRow(Drugs drug) {
-        return drugDao.insertRow(drug);
+    public void setDrugsDao(DrugsDao drugDao)
+    {
+        this.drugDao=drugDao;
     }
 
     @Override
+    @Transactional
+    public void addDrug(Drugs drug) {
+        this.drugDao.addDrug(drug);
+    }
+
+    @Override
+    @Transactional
     public Drugs getDrugById(int dId) {
-        return drugDao.getDrugById(dId);
+
+        return this.drugDao.getDrugBydId(dId);
+    }
+
+
+    @Override
+    @Transactional
+    public List<Drugs> getList()
+    {
+        return this.drugDao.getList();
     }
 
     @Override
-    public Drugs getDrugsById(int dId) {
-        return null;
-    }
-
-    /*
-        @Override
-        public Drugs getPatientById(int pId){return drugDao.getPatientById(pId);}
-    */
-    @Override
-    public List<Drugs> getList() {
-        return drugDao.getList();
+    @Transactional
+    public void updateRow(Drugs drug) {
+        this.drugDao.updateRow(drug);
     }
 
     @Override
-    public int updateRow(Drugs drug) {
-        return 0;
-    }
-
-    @Override
-    public int deleteRow(int dId) {
-        return 0;
+    @Transactional
+    public void deleteRow (int pId) {
+        this.drugDao.deleteRow(pId);
     }
 }

@@ -10,13 +10,13 @@ import java.util.List;
 public interface PatientManager
 {
 
-    public int insertRow(Patient patient);
+    public void addPatient(Patient patient);
 
     public Patient getPatientById(int pId);
 
     public List<Patient> getList();
 
-    public int updateRow(Patient patient);
+    public void updateRow(Patient patient);
 
-    public int deleteRow(int pId);
+    public void deleteRow(int pId);
 }

@@ -2,7 +2,6 @@ package com.springapp.model;
 
 import javax.persistence.*;
 import java.sql.Date;
-
 import java.util.List;
 
 
@@ -17,22 +16,22 @@ import java.util.List;
     public class Patient
 {
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "pId")
         private int pId;
 
-        @Column(name = "first_name")
+
         private String first_name;
 
-        @Column(name = "last_name")
+
         private String last_name;
 
-        @Column(name = "dob")
+
         private Date dob;
 
 /*Entity Mapping*/
 
-    @OneToMany(mappedBy ="patient")
+    @OneToMany(cascade =CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
     private List<Drugs> drugs;
 
     /* getters and setters */

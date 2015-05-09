@@ -2,40 +2,58 @@ package com.springapp.services.impl;
 
 import com.springapp.dao.PatientDao;
 import com.springapp.model.Patient;
-import com.springapp.services.PatientManager;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.List;
+
+import com.springapp.services.PatientManager;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Muthoni on 07/05/15.
  */
+
+@Service
 public class PatientManagerImpl implements PatientManager
 {
 
-    @Autowired
-    PatientDao patientDao;
+    private PatientDao patientDao;
 
-    @Override
-    public int insertRow(Patient patient) {
-        return patientDao.insertRow(patient);
+    public void setPatientDao(PatientDao patientDao)
+    {
+        this.patientDao=patientDao;
     }
 
     @Override
+    @Transactional
+    public void addPatient(Patient patient) {
+        this.patientDao.addPatient(patient);
+    }
+
+    @Override
+    @Transactional
     public Patient getPatientById(int pId) {
-        return patientDao.getPatientBypId(pId);
+
+        return this.patientDao.getPatientBypId(pId);
     }
 
     @Override
-    public List<Patient> getList() {return patientDao.getList();}
-
-    @Override
-    public int updateRow(Patient patient) {
-        return 0;
+    @Transactional
+    public List<Patient> getList()
+    {
+        return this.patientDao.getList();
     }
 
     @Override
-    public int deleteRow(int pId) {
-        return 0;
+    @Transactional
+    public void updateRow(Patient patient) {
+        this.patientDao.updateRow(patient);
+    }
+
+    @Override
+    @Transactional
+    public void deleteRow (int pId) {
+        this.patientDao.deleteRow(pId);
     }
 }

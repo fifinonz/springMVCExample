@@ -10,18 +10,16 @@ import java.util.List;
 public interface DrugsManager
 {
 
-    public int insertRow(Drugs drug);
+    public void addDrug(Drugs drug);
 
     public Drugs getDrugById(int dId);
 
    /* public Drugs getPatientById(int pId);*/
 
-    Drugs getDrugsById(int dId);
-
     public List<Drugs> getList();
 
-    public int updateRow(Drugs drug);
+    public void updateRow(Drugs drug);
 
-    public int deleteRow(int dId);
+    public void deleteRow(int dId);
 
 }
