@@ -28,7 +28,7 @@ public class DrugsDaoImpl implements DrugsDao
     public int insertRow(Drugs drug) {
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(drug);
+        session.persist(drug);
         tx.commit();
         Serializable dId = session.getIdentifier(drug);
         session.close();

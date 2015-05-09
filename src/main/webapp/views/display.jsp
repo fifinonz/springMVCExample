@@ -9,9 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Drugs</title>
-  </head>
+  <title>View Patient Drugs</title>
+</head>
 
+<h1 style="text-align: center">
+    View Prescribed Drugs
+</h1>
+<h2>
+    List of Patient Drugs
+</h2>
 <body>
 <div class = "navbar navbar-default">Drugs List</div>
 <table>
