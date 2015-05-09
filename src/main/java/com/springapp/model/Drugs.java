@@ -2,6 +2,7 @@ package com.springapp.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -20,6 +21,11 @@ public class Drugs
     private String drug_name;
 
     private int pId;
+
+    /* Entity Mapping*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pId", insertable = false, updatable = false)
+    private Patient patient;
 
     /* getters and setters */
 

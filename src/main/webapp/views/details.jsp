@@ -11,20 +11,27 @@
 <head>
   <title>Enter A New Patient</title>
 </head>
+<h1 style="text-align: center">
+  Patient Registration Form
+</h1>
+<h2>
+  Add a Patient
+</h2>
+
 <body>
-<c:if test="${not empty error}">
-  <div class="error">${error}</div>
-</c:if>
-<c:if test="${not empty msg}">
-  <div class="msg">${msg}</div>
+
+<c:if test="${not empty message}">
+  <div class="msg">${message}</div>
 </c:if>
 
-<form action="<c:url value='/create' />" method='POST'>
+<form style="border: groove"  action="<c:url value='/create' />" method='POST'>
 
-  <input type="text" placeholder="first name" name="first_name" >
-  <input type="text" placeholder="last name" name="last_name" >
-  <input type="date" placeholder="D.o.B" name="dob" >
+  <input style="color: bisque" type="text" placeholder="first name" name="first_name" >
+  <input style="color: bisque"type="text" placeholder="last name" name="last_name" >
+  <input style="color: bisque" type="date" placeholder="D.o.B" name="dob" >
 
+  <br>
+  <br>
   <button> Create</button>
 
 </form>

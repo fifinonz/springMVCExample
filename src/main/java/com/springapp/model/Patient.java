@@ -3,6 +3,7 @@ package com.springapp.model;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -26,7 +27,10 @@ import java.sql.Timestamp;
 
         private Date dob;
 
+      /*Entity Mapping*/
 
+        @OneToMany(cascade =CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "patient")
+        private List<Drugs> drugs;
 
     /* getters and setters */
 
@@ -62,7 +66,12 @@ import java.sql.Timestamp;
             this.dob = dob;
         }
 
-
+        public List<Drugs> getDrug() {
+        return drugs;
+    }
+         public void setDrug(List<Drugs> drugs) {
+        this.drugs = drugs;
+    }
 
 
 

@@ -9,17 +9,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
-</head>
+  <title>Drugs</title>
+  </head>
+
 <body>
+<div class = "navbar navbar-default">Drugs List</div>
 <table>
+  <tr>
+    <th>Drug ID</th>
+    <th>Drug Name</th>
+    <th>Patient ID</th>
+  </tr>
   <c:forEach var="list"  items="${drugsList}">
     <tr>
-        <%--<td>${List.id}</td>--%>
+      <td>${list.DId}</td>
       <td>${list.drug_name}</td>
       <td>${list.pId}</td>
     </tr>
   </c:forEach>
 </table>
+
+</body>
 </body>
 </html>

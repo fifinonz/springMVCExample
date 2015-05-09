@@ -9,22 +9,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Allocate Drug</title>
 </head>
+
+<h1 style="text-align: center">
+    Prescribe A Drug
+</h1>
+<h2>
+    Add a Drug
+</h2>
 <body>
-<c:if test="${not empty error}">
-  <div class="error">${error}</div>
-</c:if>
-<c:if test="${not empty msg}">
-  <div class="msg">${msg}</div>
-</c:if>
 
-<form action="<c:url value='/drug' />" method='POST'>
+<form style="border: groove" action="<c:url value='/drug'/>" method='POST'>
 
-  <input type="" placeholder="Patient ID" name="pId" >
-  <input type="text" placeholder="Drug name" name="drug_name" >
+  <input style="color: bisque" type="text" placeholder="Patient ID" name="pId" >
+  <input style="color: bisque" type="text" placeholder="Drug name" name="drug_name" >
 
-
+    <br>
+    <br>
   <button>Submit</button>
 
 </form>
