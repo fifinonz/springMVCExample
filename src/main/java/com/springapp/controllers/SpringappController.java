@@ -54,23 +54,25 @@ public class SpringappController {
         patient.setLast_name(last_name);
         patient.setDate(dob);
         patientManager.insertRow(patient);
-
+        model.addObject("listPatient", patientManager.getlist());
+        model.addObject("msg","Patient Added Successfully");
 
         model.setViewName("details");
         return model;
     }
 
-    @RequestMapping("/drug")
+    @RequestMapping(value="/drug", method=RequestMethod.GET)
     public ModelAndView drug( @RequestParam(value = "pId", required = false) Integer pId,
                                     @RequestParam(value = "drug_name", required = false) String drug_name
     ) {
-        ModelAndView model = new ModelAndView();
+        ModelAndView model = new ModelAndView("drug");
 
         Drugs drug = new Drugs();
         drug.setDrug_name(drug_name);
         drug.setpId(pId);
         drugsManager.insertRow(drug);
-
+        model.addObject("listDrugs", drugsManager.getList());
+        model.addObject("msg","Patient Prescribed Drug Successfully");
         model.setViewName("drugList");
         return model;
     }
