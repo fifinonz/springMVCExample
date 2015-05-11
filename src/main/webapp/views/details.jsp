@@ -35,6 +35,25 @@
   <button> Create</button>
 
 </form>
-
+<br/>
+<p>List of Patients</p>
+<c:if test="${!empty listPatient}">
+<table class="tg">
+<tr>
+<th width="80">Patient ID</th>
+<th width="150">Patient Name</th>
+<th width="150">Date of Birth</th>
+<th width="150">Allocate Drug</th>
+</tr>
+<c:forEach items="${listPatient}" var="patient">
+<tr>
+<td>${patient.id}</td>
+<td>${patient.fname} ${patient.lname}</td>
+<td>${patient.dob}</td>
+<td><a href="<c:url value='/allocate?id=${patient.id}' />" >Allocate Drug</a></td>
+</tr>
+</c:forEach>
+</table>
+</c:if>
 </body>
 </html>
