@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,14 +55,14 @@ public class SpringappController {
         patient.setLast_name(last_name);
         patient.setDate(dob);
         patientManager.insertRow(patient);
-        model.addObject("listPatient", patientManager.getlist());
+        model.addObject("listPatient", patientManager.getList());
         model.addObject("msg","Patient Added Successfully");
 
         model.setViewName("details");
         return model;
     }
 
-    @RequestMapping(value="/drug", method=RequestMethod.GET)
+    @RequestMapping(value="/drug", method= RequestMethod.GET)
     public ModelAndView drug( @RequestParam(value = "pId", required = false) Integer pId,
                                     @RequestParam(value = "drug_name", required = false) String drug_name
     ) {

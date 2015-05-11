@@ -43,7 +43,7 @@ public class PatientDaoImpl  implements PatientDao
         session.close();
         return patient;
     }
-
+    @Autowired
     @Override
     public List<Patient> getList() {
         Session session = sessionFactory.openSession();
