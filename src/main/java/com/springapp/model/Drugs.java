@@ -51,5 +51,12 @@ public class Drugs
     public void setpId(int pId) {
         this.pId = pId;
     }
+   public Patient getPatient() {
+      return patient;
+   }
+   public void setPatient(Patient patient) {
+     this.patient = patient;
+   }
+
 }
 
