@@ -91,17 +91,7 @@ public class SpringappController {
         return model;
 
 
-      /*  List<Patient> patientList =  patientManager.getList();
-        List<Drugs> drugsList =  drugsManager.getList();
 
-        for (int i = 0; i < patientList.size(); i++) {
-            Patient patient = patientList.get(i);
-
-            if(drugsList.contains(drugsManager.getPatientById(i))) {
-                System.out.println(patient.getFirst_name() + " " + patient.getLast_name() + " " + drugsManager.getDrugById(i));
-                System.out.println("\n\n**********************************\n\n");
-            }
-        }*/
 
 
     }
