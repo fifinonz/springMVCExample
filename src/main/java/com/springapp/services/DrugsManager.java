@@ -14,7 +14,7 @@ public interface DrugsManager
 
     public Drugs getDrugById(int dId);
 
-   /* public Drugs getPatientById(int pId);*/
+
 
     Drugs getDrugsById(int dId);
 

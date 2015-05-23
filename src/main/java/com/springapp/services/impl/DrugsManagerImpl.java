@@ -31,10 +31,7 @@ public  class DrugsManagerImpl implements DrugsManager
         return null;
     }
 
-    /*
-        @Override
-        public Drugs getPatientById(int pId){return drugDao.getPatientById(pId);}
-    */
+
     @Override
     public List<Drugs> getList() {
         return drugDao.getList();
